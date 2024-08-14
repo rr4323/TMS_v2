@@ -99,6 +99,8 @@ The API provides a custom action to retrieve overdue tasks. A task is considered
 
 - **`GET /api/tasks/overdue/`**: Retrieve a list of all overdue tasks.
 
+### web browsable api
+- **`http://localhost:8000/api/schema/swagger-ui/`**: web browsable api documentation
 ### Example Request
 
 To retrieve all overdue tasks, send a GET request to:
