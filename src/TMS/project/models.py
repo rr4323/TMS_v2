@@ -1,7 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
-from task.models import Tasks
-
 
 # Create your models here.
 # Project Model:

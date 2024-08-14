@@ -22,7 +22,7 @@ class Tasks(BaseTimeStampModel):
         ('High', 'High')
     )
     #project will have multiple task
-    project = models.ForeignKey(Projects,on_delete=models.CASCADE)
+    project = models.ForeignKey(Projects,related_name='tasks',on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(default="")
     status = models.CharField(max_length=20,choices=TASK_TYPE,default="To Do")
@@ -32,11 +32,11 @@ class Tasks(BaseTimeStampModel):
     class Meta:
         db_table = 'tasks'
 
-class TaskAssignmentMapping(BaseTimeStampModel):
+class TaskAssignment(BaseTimeStampModel):
     #a task assign to user and user can have multiple task
     user = models.ForeignKey(User,related_name='task_user', on_delete=models.CASCADE)
     task = models.ForeignKey(Tasks,related_name='user_task', on_delete=models.CASCADE)
-    assigned_at = models.DateTimeField(null=True)
+    assigned_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         db_table = 'task_assignment'
 

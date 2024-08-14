@@ -30,8 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'User'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework_material',
     'rest_framework',
-    'task'
+    'task',
+    'project',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +130,18 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Rest framework configuration
-
+REST_FRAMEWORK = {
+    # YOUR SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+#specular app settings for documentation
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Task management v1 api',
+    'DESCRIPTION': 'This project implement task management workflow',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
 #logging configuration
 LOG_PATH = '/var/log/tms_app'
 LOGGING = {
