@@ -90,6 +90,15 @@ Here are the primary API endpoints available:
 - **`GET /api/v1/tasks/{id}/comments/`**: Retrieve all comments on a specific task.
 - **`POST /api/v1/tasks/{id}/comments/`**: Add a comment to a specific task.
 - **`DELETE /api/v1/tasks/{task_id}/comments/{comment_id}/`**: Delete a specific comment from a task.
+### Project Management
+
+- **`GET /api/v1/projects/`**: Retrieve a list of projects.
+- **`GET /api/v1/projects/{id}/`**: Retrieve details of a specific project by its ID.
+- **`POST /api/v1/projects/`**: Create a new project.
+- **`PUT /api/v1/projects/{id}/`**: Update an existing project.
+- **`DELETE /api/v1/projects/{id}/`**: Delete a specific project.
+- **`GET /projects/{id}/progress/`**:Retrieve the progress of a
+specific project.
 
 ## Overdue Tasks
 
@@ -101,26 +110,5 @@ The API provides a custom action to retrieve overdue tasks. A task is considered
 
 ### web browsable api
 - **`http://localhost:8000/api/schema/swagger-ui/`**: web browsable api documentation
-### Example Request
 
-To retrieve all overdue tasks, send a GET request to:
-
-```
-GET /api/tasks/overdue/
-```
-
-### Example Response
-
-```json
-[
-    {
-        "id": 1,
-        "title": "Task 1",
-        "description": "Description of Task 1",
-        "due_date": "2023-08-10T00:00:00Z",
-        "status": "In Progress",
-        "project":1
-    }
-]
-```
 
