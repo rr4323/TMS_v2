@@ -158,7 +158,7 @@ class TaskCommentModelTest(TestCase):
         self.invalid_task_id = randint(self.task.id+1,self.task.id+10)
         self.invalid_user_id =  randint(self.user.id+1,self.user.id+10)
 
-    def test_valid_task_assignment(self):
+    def test_valid_task_comment(self):
         valid_task_data={
             "user":self.user,
             "task": self.task,
@@ -167,19 +167,31 @@ class TaskCommentModelTest(TestCase):
         task=Comments.objects.create(**valid_task_data)
         self.assertTrue(isinstance(task,Comments))
     
-    def test_invalid_task_assignment_on_invalid_user(self):
+    def test_invalid_task_comment_on_invalid_user(self):
         invalid_task_data={
             "user_id":self.invalid_user_id,
-            "task": self.task
+            "task": self.task,
+            "text": "this is a comment"
         }
         with self.assertRaises(ValidationError):
             task = Comments(**invalid_task_data)
             task.full_clean()
 
-    def test_invalid_task_assignment_on_invalid_project(self):
+    def test_invalid_task_comment_on_invalid_task(self):
         invalid_task_data={
             "user":self.user,
-            "task_id":self.invalid_task_id
+            "task_id":self.invalid_task_id,
+            "text":"this is a comment"
+        }
+        with self.assertRaises(ValidationError):
+            task = Comments(**invalid_task_data)
+            task.full_clean()
+
+    def test_invalid_task_comment_on_comment_is_none(self):
+        invalid_task_data={
+            "user":self.user,
+            "task_id":self.invalid_task_id,
+            "text":None
         }
         with self.assertRaises(ValidationError):
             task = Comments(**invalid_task_data)
