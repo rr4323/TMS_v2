@@ -102,8 +102,8 @@ class TaskOverDueApiViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
     
-    # def list(self, request, *args, **kwargs):
-    #     today=datetime.now()
-    #     overdue_tasks = self.queryset.filter(Q(due_date__lt=today) & ~Q(status='Completed'))
-    #     serializer = self.serializer_class(overdue_tasks, many=True)
-    #     return Response(serializer.data,status=status.HTTP_200_OK)
+    def list(self, request, *args, **kwargs):
+        today=datetime.now()
+        overdue_tasks = self.queryset.filter(Q(due_date__lt=today) & ~Q(status='Completed'))
+        serializer = self.serializer_class(overdue_tasks, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
